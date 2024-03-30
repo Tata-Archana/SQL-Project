@@ -1,10 +1,10 @@
-Go Green Nursery Summary
+**Go Green Nursery Summary**
 
 Go Green plant nursery is an organization that specializes in cultivation, propagation, and sales of plants. This organization typically grows a wide range of plant species, including flowers, in-door plants, shrubs, and ornamental plants. We often focus on specific plant categories, such as annuals, perennials, herbs, or succulents.
 Our organization's primary objective is to produce healthy and high-quality plants that are suitable for various purposes, such as gardening, landscaping, and agricultural production. We sell plants through various channels, such as direct-to-consumer sales, wholesale to landscapers and garden centers, and online sales. We may also offer additional services, such as consultations, delivery, installation, and maintenance.
 To enhance sales, our organization requires extensive knowledge of horticulture, business management, and marketing, including careful planning and management of inventory, effective pricing, and sales strategies, and maintaining good relationships with suppliers and customers. Another challenge is to stay up to date with industry trends and innovations to remain competitive in a rapidly changing marketplace.
 
-Problem Statement
+**Problem Statement**
 
 As our organization is planning to extend to a medium-scale business it is required to store all the information about plants and their requirements. We must monitor the availability of gardening tools, fertilizers, pesticides to monitor the health of plants and customer needs.
 Below are some of reasons why we need to maintain a SQL database:
@@ -14,8 +14,8 @@ Plant care and maintenance: A SQL database can help the nursery keep track of pl
 Reporting and analysis: A SQL database can provide the nursery with valuable insights into its operations, such as sales trends, inventory turnover rates, and plant performance. This can help with decision-making, identifying areas for improvement, and optimizing business processes.
 Overall, maintaining a SQL database can help the nursery operate more efficiently, reduce costs, and improve customer satisfaction.
 Thus, Go Green plant nursery decided to maintain a Relational Database for their business to address the above problems.
-
-Entities, Attributes and Relationships
+**
+**Entities, Attributes and Relationships****
 Primary entities along with their attributes that are required in the Go Green Nursery are:
 1)	Plant and Plant Requirements: Plant scientific name, Requirement id, Plant type, etc.
 2)	Customer: Customer id, Customer first name, Customer last name, Customer payment method, etc.
@@ -27,8 +27,8 @@ Primary entities along with their attributes that are required in the Go Green N
 8)	Pesticides: Pesticide id, Pesticide name, Pesticide type, etc.
 9)	Appointment: Appointment id, Appointment slot, etc.
 10)	Services: Service id, Service name, Service description, etc.
-
-Relationships: 
+**
+**Relationships: ****
 •	Plant and Plant Requirements(M:M)
 •	Customer and Plant(M:M)
 •	Plant and Order(M:M)
@@ -44,7 +44,7 @@ Relationships:
 •	Customer and Appointment (1:M)
 •	Appointment and Transaction (1:M)
 
-Functional Requirements
+**Functional Requirements**
 
 •	The database contains data i.e., plant itinerary, supplier, customer information, order and transaction details which are necessary to operate our Go Green Nursery. 
 •	This would allow employees of Go Green Nursery to search for the plant and other requirements.  It also enables to get the customer details such as customer name, address for the shipment, track orders details and payment information. 
@@ -149,7 +149,7 @@ Example: A customer ordered Rose and Aloe vera plant.
 •	A relationship between pesticide and plant requirement has one-to-many relationship meaning that a single pesticide can be used for multiple plant requirements, but each plant requirement can only have one pesticide.
 •	The relationship between fertilizer and plant requirement has one-to-many relationship meaning that a single fertilizer can be used for multiple plant requirements, but each plant requirement can only have one fertilizer.
 
-Normalization
+**Normalization**
 
 Normalization is a process of organizing data in a database to reduce data redundancy and increase data integrity. There are different levels of normalization, with the most used being the first, second, and third normal forms (1NF, 2NF, and 3NF).
 1NF: The first normal form requires that all data in a table must be atomic, meaning it cannot be further divided into smaller pieces. This ensures that each table has a unique primary key and that there is no repeating data.
@@ -621,19 +621,28 @@ VALUES
 (3,6),
 (3,9);
 
-Database Queries: 
-1.	ALTER TABLE order_detail ADD CONSTRAINT fk_plant FOREIGN KEY (plant_id) REFERENCES plant(plant_id) ;
+**Database Queries: **
+1.	**ALTER TABLE order_detail ADD CONSTRAINT fk_plant FOREIGN KEY (plant_id) REFERENCES plant(plant_id) ;**
 
    ![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/5995e42e-34a2-423d-ba95-42fad20f429b)
 
 
-3.	ALTER TABLE order_detail ADD COLUMN unit_price decimal(10,2) NOT NULL;
+2.	**ALTER TABLE order_detail ADD COLUMN unit_price decimal(10,2) NOT NULL;**
 
-4.	ALTER TABLE `transaction` MODIFY COLUMN transaction_price DECIMAL(10,2) NOT NULL;
+   ![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/829a9a32-203d-4e6c-8e03-e0d620b50f96)
+
+
+3.	**ALTER TABLE `transaction` MODIFY COLUMN transaction_price DECIMAL(10,2) NOT NULL;**
+![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/13af1e4a-d5c4-4d6b-9dc4-074ae62ea785)
+
+   
  
-5.	ALTER TABLE plant_gardening_tool RENAME TO plant_needs_gardening tool;
+4.	**ALTER TABLE plant_gardening_tool RENAME TO plant_needs_gardening tool;**
 
-1.Query to retrieve the top 5 popular plants:
+   ![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/704eab3b-c057-4b9d-81ad-851307e24b32)
+
+
+**1.Query to retrieve the top 5 popular plants:**
 SELECT 
     p.plant_common_name,
     SUM(od.order_quantity) AS total_quantity_sold
@@ -644,8 +653,10 @@ FROM
 GROUP BY p.plant_id
 ORDER BY total_quantity_sold DESC
 LIMIT 5;
- 
-2.Query to retrieve list of plants with their requirements.
+
+![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/d8075316-2cf4-482a-b4b4-576039598e0e)
+**
+**2.Query to retrieve list of plants with their requirements.****
 SELECT
 p.plant_common_name,
 GROUP_CONCAT(pr.requirement_name
@@ -657,6 +668,7 @@ plant_has_plantrequirement ppr ON p.plant_id = ppr.plant_id
 JOIN
 plant_requirement pr ON pr.requirement_id = ppr.requirement_id
 GROUP BY p.plant_common_name;
+![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/aa1526ba-19a7-4226-ba8b-77b04474e9f7)
 
 3.  Query to retrieve to give a list of services that were performed by each customer and how much did they pay for those services during the between 15th April and 30th April,2023.
 SELECT
@@ -671,8 +683,9 @@ JOIN Service s ON a.appointment_service = s.service_id
 JOIN Transaction t ON a.appointment_id = t.appointment_id
 WHERE
 a.appointment_slot BETWEEN '2023-04-15 00:00:00' AND '2023-04-30 23:59:59';
+![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/a0c9cee3-f126-40b5-8be2-9b010162c3cc)
 
-4. Query to retrieve information about customers' plant purchases, including the total number of plants purchased, the names of the plants, and the total revenue generated. Sort the results in descending order based on the number of plants purchased and group the results by each customer's first and last name.
+**4. Query to retrieve information about customers' plant purchases, including the total number of plants purchased, the names of the plants, and the total revenue generated. Sort the results in descending order based on the number of plants purchased and group the results by each customer's first and last name.**
 SELECT
 c.customer_first_name,
 c.customer_last_name,
@@ -690,8 +703,9 @@ JOIN
 Customer c ON c.customer_id = o.customer_id
 GROUP BY c.customer_first_name , c.customer_last_name
 ORDER BY num_plants_purchased DESC;
+![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/749dce5c-9dea-4ef6-8fe9-f829cb39501d)
 
-5.Write a trigger to update the plant table after inserting a record in order_detail.
+**5.Write a trigger to update the plant table after inserting a record in order_detail.**
 DELIMITER //
 CREATE TRIGGER minus_plant_quantity AFTER INSERT ON order_detail
 FOR EACH ROW
@@ -702,8 +716,11 @@ WHERE plant_id = NEW.plant_id;
 END
 //
 DELIMITER ;
+![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/0a59d56e-5bcb-42cd-8208-66d37f8e7317)
+![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/6804700c-9488-4f0d-801a-99de6eb90ed9)
+![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/a75400b4-d434-4664-a264-d3153eb5ba3d)
 
-6.Write a trigger to ensure that a pesticide with an expiry date that has already passed cannot be inserted into the Pesticide table.
+**6.Write a trigger to ensure that a pesticide with an expiry date that has already passed cannot be inserted into the Pesticide table.**
 
 CREATE TRIGGER pesticide_expiry_trigger
 BEFORE INSERT ON Pesticide
@@ -714,8 +731,10 @@ BEGIN
         SET MESSAGE_TEXT = 'Cannot insert. Expiry date is in the past.';
     END IF;
 END;
+![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/5d749970-d1dd-4ff4-9e20-e2d97b4f002c)
+![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/e6daeb25-6dfc-4ce2-8b62-f5455f39f7dc)
 
-7.Write a function to schedule an appointment for a customer.
+**7.Write a function to schedule an appointment for a customer.**
 
  This function allows a customer to schedule an appointment for a service.
 DELIMITER $$
@@ -731,7 +750,9 @@ RETURN appointment_id;
 END $$
 DELIMITER ;
  
- 
+ ![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/3a0a3bef-8883-4040-9639-ee8fdb72ccea)
+![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/817471c4-51a5-4cd8-aeae-9f3b89726b0e)
+
  
 
 
