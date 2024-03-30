@@ -624,11 +624,14 @@ VALUES
 Database Queries: 
 1.	ALTER TABLE order_detail ADD CONSTRAINT fk_plant FOREIGN KEY (plant_id) REFERENCES plant(plant_id) ;
 
-2.	ALTER TABLE order_detail ADD COLUMN unit_price decimal(10,2) NOT NULL;
+   ![image](https://github.com/Tata-Archana/SQL-Project/assets/29245288/5995e42e-34a2-423d-ba95-42fad20f429b)
 
-3.	ALTER TABLE `transaction` MODIFY COLUMN transaction_price DECIMAL(10,2) NOT NULL;
+
+3.	ALTER TABLE order_detail ADD COLUMN unit_price decimal(10,2) NOT NULL;
+
+4.	ALTER TABLE `transaction` MODIFY COLUMN transaction_price DECIMAL(10,2) NOT NULL;
  
-4.	ALTER TABLE plant_gardening_tool RENAME TO plant_needs_gardening tool;
+5.	ALTER TABLE plant_gardening_tool RENAME TO plant_needs_gardening tool;
 
 1.Query to retrieve the top 5 popular plants:
 SELECT 
